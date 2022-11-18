@@ -1,0 +1,101 @@
+{
+  "name": "ember-template-lint-no-implicit-this",
+  "version": "1.0.0",
+  "private": false,
+  "description": "A no 'implicit this rule' but with fixing plugin for ember-template-lint",
+  "keywords": [
+    "ember-template-lint",
+    "ember-template-lint-plugin",
+    "handlebars",
+    "glimmer"
+  ],
+  "repository": "git@github.com:robclancy/ember-template-lint-no-implicit-this.git",
+  "license": "BSD-3-Clause",
+  "author": "Robert Clancy <'robbo.clancy@gmail.com'>",
+  "main": "./ember-template-lint-no-implicit-this.js",
+  "exports": "./ember-template-lint-no-implicit-this.js",
+  "type": "module",
+  "files": [
+    "ember-template-lint-no-implicit-this.js",
+    "lib"
+  ],
+  "scripts": {
+    "format": "yarn prettier \"**/*.{hbs,js,json,yml}\" --write",
+    "lint": "npm-run-all --continue-on-error --parallel lint:*",
+    "lint:docs": "markdownlint \"**/*.md\"",
+    "lint:docs:fix": "npm run lint:docs -- --fix",
+    "lint:js": "eslint --cache .",
+    "lint:js:fix": "npm run lint:js -- --fix",
+    "release": "release-it",
+    "test": "npm-run-all lint:* test:*",
+    "test:jest": "node --experimental-vm-modules ./node_modules/jest/bin/jest.js --coverage",
+    "test:jest:watch": "node --experimental-vm-modules ./node_modules/jest/bin/jest.js --watch"
+  },
+  "devDependencies": {
+    "@release-it-plugins/lerna-changelog": "^5.0.0",
+    "ember-template-lint": "^4.0.0",
+    "eslint": "^7.24.0",
+    "@microsoft/jest-sarif": "^1.0.0-beta.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-node": "^11.0.0",
+    "eslint-plugin-jest": "^26.0.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "lerna-changelog": "^2.1.0",
+    "markdownlint-cli": "^0.32.2",
+    "jest": "^28.1.3",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^2.3.1",
+    "release-it": "^15.5.0"
+  },
+  "peerDependencies": {
+    "ember-template-lint": ">= 4.0.0"
+  },
+  "engines": {
+    "node": "^12.22.0 || ^14.17.0 || >=16.0.0"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org"
+  },
+  "jest": {
+    "coveragePathIgnorePatterns": [
+      "<rootDir>/node_modules/",
+      "<rootDir>/test/"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 80,
+        "functions": 90,
+        "lines": 80,
+        "statements": 80
+      }
+    },
+    "setupFilesAfterEnv": [
+      "<rootDir>/test/jest-setup.js"
+    ],
+    "snapshotFormat": {
+      "printBasicPrototype": false
+    },
+    "testMatch": [
+      "<rootDir>/test/**/*-test.js"
+    ]
+  },
+  "release-it": {
+    "plugins": {
+      "@release-it-plugins/lerna-changelog": {
+        "infile": "CHANGELOG.md",
+        "launchEditor": false
+      }
+    },
+    "git": {
+      "tagName": "v${version}"
+    },
+    "github": {
+      "release": true,
+      "tokenRef": "GITHUB_AUTH"
+    }
+  },
+  "volta": {
+    "node": "16.13.1",
+    "yarn": "1.22.17"
+  }
+}
