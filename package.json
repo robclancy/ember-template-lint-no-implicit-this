@@ -1,6 +1,6 @@
 {
   "name": "ember-template-lint-no-implicit-this",
-  "version": "0.0.3",
+  "version": "1.0.0",
   "private": false,
   "description": "A no 'implicit this rule' but with fixing plugin for ember-template-lint",
   "keywords": [
