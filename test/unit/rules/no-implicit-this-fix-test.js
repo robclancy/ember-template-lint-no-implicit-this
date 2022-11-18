@@ -94,8 +94,9 @@ generateRuleTests({
   bad: [
     {
       template: "{{book}}",
+      fixedTemplate: "{{this.book}}",
+
       verifyResults(results) {
-        console.log({ results });
         expect(results).toMatchInlineSnapshot(`
           [
             {
@@ -103,6 +104,7 @@ generateRuleTests({
               "endColumn": 6,
               "endLine": 1,
               "filePath": "layout.hbs",
+              "isFixable": true,
               "line": 1,
               "message": "Ambiguous path 'book' is not allowed. Use '@book' if it is a named argument or 'this.book' if it is a property on 'this'. If it is a helper or component that has no arguments, you must either convert it to an angle bracket invocation or manually add it to the 'no-implicit-this' rule configuration, e.g. 'no-implicit-this': { allow: ['book'] }.",
               "rule": "no-implicit-this-fix",
@@ -115,6 +117,8 @@ generateRuleTests({
     },
     {
       template: "{{book-details}}",
+      fixedTemplate: "{{this.book-details}}",
+
       verifyResults(results) {
         expect(results).toMatchInlineSnapshot(`
           [
@@ -123,6 +127,7 @@ generateRuleTests({
               "endColumn": 14,
               "endLine": 1,
               "filePath": "layout.hbs",
+              "isFixable": true,
               "line": 1,
               "message": "Ambiguous path 'book-details' is not allowed. Use '@book-details' if it is a named argument or 'this.book-details' if it is a property on 'this'. If it is a helper or component that has no arguments, you must either convert it to an angle bracket invocation or manually add it to the 'no-implicit-this' rule configuration, e.g. 'no-implicit-this': { allow: ['book-details'] }.",
               "rule": "no-implicit-this-fix",
@@ -135,6 +140,8 @@ generateRuleTests({
     },
     {
       template: "{{book.author}}",
+      fixedTemplate: "{{this.book.author}}",
+
       verifyResults(results) {
         expect(results).toMatchInlineSnapshot(`
           [
@@ -143,6 +150,7 @@ generateRuleTests({
               "endColumn": 13,
               "endLine": 1,
               "filePath": "layout.hbs",
+              "isFixable": true,
               "line": 1,
               "message": "Ambiguous path 'book.author' is not allowed. Use '@book.author' if it is a named argument or 'this.book.author' if it is a property on 'this'. If it is a helper or component that has no arguments, you must either convert it to an angle bracket invocation or manually add it to the 'no-implicit-this' rule configuration, e.g. 'no-implicit-this': { allow: ['book.author'] }.",
               "rule": "no-implicit-this-fix",
@@ -155,6 +163,8 @@ generateRuleTests({
     },
     {
       template: "{{helper book}}",
+      fixedTemplate: "{{helper this.book}}",
+
       verifyResults(results) {
         expect(results).toMatchInlineSnapshot(`
           [
@@ -163,6 +173,7 @@ generateRuleTests({
               "endColumn": 13,
               "endLine": 1,
               "filePath": "layout.hbs",
+              "isFixable": true,
               "line": 1,
               "message": "Ambiguous path 'book' is not allowed. Use '@book' if it is a named argument or 'this.book' if it is a property on 'this'. If it is a helper or component that has no arguments, you must either convert it to an angle bracket invocation or manually add it to the 'no-implicit-this' rule configuration, e.g. 'no-implicit-this': { allow: ['book'] }.",
               "rule": "no-implicit-this-fix",
@@ -175,6 +186,8 @@ generateRuleTests({
     },
     {
       template: "{{#helper book}}{{/helper}}",
+      fixedTemplate: "{{#helper this.book}}{{/helper}}",
+
       verifyResults(results) {
         expect(results).toMatchInlineSnapshot(`
           [
@@ -183,6 +196,7 @@ generateRuleTests({
               "endColumn": 14,
               "endLine": 1,
               "filePath": "layout.hbs",
+              "isFixable": true,
               "line": 1,
               "message": "Ambiguous path 'book' is not allowed. Use '@book' if it is a named argument or 'this.book' if it is a property on 'this'. If it is a helper or component that has no arguments, you must either convert it to an angle bracket invocation or manually add it to the 'no-implicit-this' rule configuration, e.g. 'no-implicit-this': { allow: ['book'] }.",
               "rule": "no-implicit-this-fix",
@@ -195,6 +209,8 @@ generateRuleTests({
     },
     {
       template: "<MyComponent @prop={{can.do}} />",
+      fixedTemplate: "<MyComponent @prop={{this.can.do}} />",
+
       verifyResults(results) {
         expect(results).toMatchInlineSnapshot(`
           [
@@ -203,6 +219,7 @@ generateRuleTests({
               "endColumn": 27,
               "endLine": 1,
               "filePath": "layout.hbs",
+              "isFixable": true,
               "line": 1,
               "message": "Ambiguous path 'can.do' is not allowed. Use '@can.do' if it is a named argument or 'this.can.do' if it is a property on 'this'. If it is a helper or component that has no arguments, you must either convert it to an angle bracket invocation or manually add it to the 'no-implicit-this' rule configuration, e.g. 'no-implicit-this': { allow: ['can.do'] }.",
               "rule": "no-implicit-this-fix",
@@ -215,7 +232,9 @@ generateRuleTests({
     },
     {
       template: "<MyComponent @prop={{can.do}} />",
+      fixedTemplate: "<MyComponent @prop={{this.can.do}} />",
       config: { allow: ["can"] },
+
       verifyResults(results) {
         expect(results).toMatchInlineSnapshot(`
           [
@@ -224,6 +243,7 @@ generateRuleTests({
               "endColumn": 27,
               "endLine": 1,
               "filePath": "layout.hbs",
+              "isFixable": true,
               "line": 1,
               "message": "Ambiguous path 'can.do' is not allowed. Use '@can.do' if it is a named argument or 'this.can.do' if it is a property on 'this'. If it is a helper or component that has no arguments, you must either convert it to an angle bracket invocation or manually add it to the 'no-implicit-this' rule configuration, e.g. 'no-implicit-this': { allow: ['can.do'] }.",
               "rule": "no-implicit-this-fix",
@@ -236,6 +256,8 @@ generateRuleTests({
     },
     {
       template: "{{session.user.name}}",
+      fixedTemplate: "{{this.session.user.name}}",
+
       verifyResults(results) {
         expect(results).toMatchInlineSnapshot(`
           [
@@ -244,6 +266,7 @@ generateRuleTests({
               "endColumn": 19,
               "endLine": 1,
               "filePath": "layout.hbs",
+              "isFixable": true,
               "line": 1,
               "message": "Ambiguous path 'session.user.name' is not allowed. Use '@session.user.name' if it is a named argument or 'this.session.user.name' if it is a property on 'this'. If it is a helper or component that has no arguments, you must either convert it to an angle bracket invocation or manually add it to the 'no-implicit-this' rule configuration, e.g. 'no-implicit-this': { allow: ['session.user.name'] }.",
               "rule": "no-implicit-this-fix",
@@ -256,6 +279,8 @@ generateRuleTests({
     },
     {
       template: "<MyComponent @prop={{session.user.name}} />",
+      fixedTemplate: "<MyComponent @prop={{this.session.user.name}} />",
+
       verifyResults(results) {
         expect(results).toMatchInlineSnapshot(`
           [
@@ -264,6 +289,7 @@ generateRuleTests({
               "endColumn": 38,
               "endLine": 1,
               "filePath": "layout.hbs",
+              "isFixable": true,
               "line": 1,
               "message": "Ambiguous path 'session.user.name' is not allowed. Use '@session.user.name' if it is a named argument or 'this.session.user.name' if it is a property on 'this'. If it is a helper or component that has no arguments, you must either convert it to an angle bracket invocation or manually add it to the 'no-implicit-this' rule configuration, e.g. 'no-implicit-this': { allow: ['session.user.name'] }.",
               "rule": "no-implicit-this-fix",
@@ -276,9 +302,11 @@ generateRuleTests({
     },
     {
       template: "<template>{{book}}</template>",
+      fixedTemplate: "<template>{{this.book}}</template>",
       meta: {
         filePath: "layout.gjs",
       },
+
       verifyResults(results) {
         expect(results).toMatchInlineSnapshot(`
           [
@@ -287,6 +315,7 @@ generateRuleTests({
               "endColumn": 16,
               "endLine": 1,
               "filePath": "layout.gjs",
+              "isFixable": true,
               "line": 1,
               "message": "Ambiguous path 'book' is not allowed. Use '@book' if it is a named argument or 'this.book' if it is a property on 'this'. If it is a helper or component that has no arguments, you must either convert it to an angle bracket invocation or manually add it to the 'no-implicit-this' rule configuration, e.g. 'no-implicit-this': { allow: ['book'] }.",
               "rule": "no-implicit-this-fix",
@@ -305,6 +334,11 @@ generateRuleTests({
       import { setComponentTemplate } from '@ember/component';
       import templateOnly from '@ember/component/template-only';
       export const SomeComponent = setComponentTemplate(hbs\`{{book}}\`, templateOnly());`,
+      fixedTemplate: `import { hbs } from 'ember-template-imports';
+      import { setComponentTemplate } from '@ember/component';
+      import templateOnly from '@ember/component/template-only';
+      export const SomeComponent = setComponentTemplate(hbs\`{{this.book}}\`, templateOnly());`,
+
       verifyResults(results) {
         expect(results).toMatchInlineSnapshot(`
           [
@@ -313,6 +347,7 @@ generateRuleTests({
               "endColumn": 66,
               "endLine": 4,
               "filePath": "layout.gjs",
+              "isFixable": true,
               "line": 4,
               "message": "Ambiguous path 'book' is not allowed. Use '@book' if it is a named argument or 'this.book' if it is a property on 'this'. If it is a helper or component that has no arguments, you must either convert it to an angle bracket invocation or manually add it to the 'no-implicit-this' rule configuration, e.g. 'no-implicit-this': { allow: ['book'] }.",
               "rule": "no-implicit-this-fix",
@@ -331,6 +366,11 @@ generateRuleTests({
       import { setComponentTemplate } from '@ember/component';
       import templateOnly from '@ember/component/template-only';
       export const SomeComponent = setComponentTemplate(theHbs\`{{book}}\`, templateOnly());`,
+      fixedTemplate: `import { hbs as theHbs } from 'ember-template-imports';
+      import { setComponentTemplate } from '@ember/component';
+      import templateOnly from '@ember/component/template-only';
+      export const SomeComponent = setComponentTemplate(theHbs\`{{this.book}}\`, templateOnly());`,
+
       verifyResults(results) {
         expect(results).toMatchInlineSnapshot(`
           [
@@ -339,6 +379,7 @@ generateRuleTests({
               "endColumn": 69,
               "endLine": 4,
               "filePath": "layout.gjs",
+              "isFixable": true,
               "line": 4,
               "message": "Ambiguous path 'book' is not allowed. Use '@book' if it is a named argument or 'this.book' if it is a property on 'this'. If it is a helper or component that has no arguments, you must either convert it to an angle bracket invocation or manually add it to the 'no-implicit-this' rule configuration, e.g. 'no-implicit-this': { allow: ['book'] }.",
               "rule": "no-implicit-this-fix",

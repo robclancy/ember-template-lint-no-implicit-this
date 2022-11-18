@@ -21,26 +21,26 @@ module.exports = {
   overrides: [
     {
       // CJS
-      files: ['**/*.cjs'],
+      files: ["**/*.cjs"],
       parserOptions: {
-        sourceType: 'script',
+        sourceType: "script",
       },
     },
     {
       // Tests
-      files: ['test/**/*.js'],
+      files: ["test/**/*.js"],
       env: {
         jest: true,
       },
       rules: {
-        'import/no-dynamic-require': 'off',
+        "import/no-dynamic-require": "off",
       },
     },
     {
       // Rule tests
-      files: ['test/unit/rules/*.js'],
+      files: ["test/unit/rules/*.js"],
       rules: {
-        'jest/no-standalone-expect': 'off', // False positives from using: verifyResults(results) { expect(results).toMatchInlineSnapshot }
+        "jest/no-standalone-expect": "off", // False positives from using: verifyResults(results) { expect(results).toMatchInlineSnapshot }
       },
     },
   ],
