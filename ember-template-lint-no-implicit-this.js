@@ -8,9 +8,9 @@ export default {
   },
 
   configurations: {
-    "no-inline": {
+    recommended: {
       rules: {
-        "no-implicit-this-fix": false,
+        "no-implicit-this-fix": true,
       },
     },
   },
