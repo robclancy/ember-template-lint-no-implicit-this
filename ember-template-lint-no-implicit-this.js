@@ -1,7 +1,7 @@
 import NoImplicitThisFix from "./lib/rules/no-implicit-this-fix.js";
 
 export default {
-  name: "ember-template-lint-no-implicit-this-plugin",
+  name: "ember-template-lint-no-implicit-this",
 
   rules: {
     "no-implicit-this-fix": NoImplicitThisFix,
